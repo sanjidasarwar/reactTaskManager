@@ -5,14 +5,19 @@ import AddTask from './components/AddTask';
 
 function App() {
   const [theme, setTheme] = useState('light')
+  const [task, setTask] =useState()
+
   const handleThemeChange=(themeName)=>{
     setTheme(themeName)
+  }
+  const handleChange= (e)=>{
+    setTask(e.target.value)
   }
 
   return (
     <div className={`App ${theme}`}>
       <Header handleThemeChange={handleThemeChange} theme={theme} />
-      <AddTask />
+      <AddTask handleChange={handleChange} task={task} />
     </div>
   );
 }
