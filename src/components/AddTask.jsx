@@ -1,7 +1,7 @@
-function AddTask({task, handleChange}) {
+function AddTask({task, handleChange, addTask}) {
   return (
     <section className='addTask'>
-    <form>
+    <form onSubmit={addTask}>
       <input type="text" name="task" value={task} placeholder="add task" onChange={handleChange}/>
       <button type="submit" className="btn btn-warning text-white">Add</button>
     </form>

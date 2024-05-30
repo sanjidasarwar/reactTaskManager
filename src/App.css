@@ -118,15 +118,15 @@
   }
   
   .showTask .count{
-    background-color: #dfdfdf;
-    color: #525252;
+    /* background-color: #dfdfdf; */
+    /* color: #525252; */
     padding: 5px 10px;
     border-radius: 50%;
     margin-left: 10px;
     user-select: none;
   }
   
-  .showTask .clearAll{
+  /* .showTask .clearAll{
     background-color: #0f6af3;
     color: #FFFFFF;
     padding: 5px 10px;
@@ -134,10 +134,10 @@
     cursor: pointer;
     border: 0px;
     font-size: 16px;
-  }
+  } */
   
   .showTask .clearAll:hover{
-    background-color: #1061db;
+    /* background-color: #1061db; */
   }
   
   .showTask ul{
