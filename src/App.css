@@ -37,7 +37,7 @@
     color: #525252;
   }
   
-  header .themeSelector span{
+  .themeSelector span{
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -47,7 +47,7 @@
     border: 1px solid #dfdfdf;
   }
   
-  header .themeSelector .activeTheme{
+  .themeSelector .active{
     height: 30px;
     width: 30px;
   }

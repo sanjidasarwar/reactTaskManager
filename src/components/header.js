@@ -1,4 +1,6 @@
-function Header() {
+function Header({theme, handleThemeChange}) {
+const themes = ['light', 'medium', 'dark', 'gOne', 'gTwo', 'gThree'];
+
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg bg-warning px-2 rounded shadow">
@@ -18,12 +20,15 @@ function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="themeSelector ms-auto">
-            <span className="light"></span>
-            <span className="medium"></span>
-            <span className="dark"></span>
-            <span className="gOne"></span>
-            <span className="gTwo"></span>
-            <span className="gThree"></span>
+            {
+                themes.map(themeName =>(
+                    <span 
+                        key={themeName}
+                        className={`${themeName} ${theme === themeName ? 'active' : ''}` }
+                        onClick={()=>handleThemeChange(themeName)}>
+                    </span>
+                ))
+            }
           </div>
         </div>
       </nav>
