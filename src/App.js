@@ -12,6 +12,7 @@ function App() {
     name:'',
     time:'',
     isEditable: false,
+    isCompleted: false
   })
   const [taskList, setTaskList] = useState([])
 
@@ -51,7 +52,8 @@ function App() {
     id: '',
     name: '',
     time: '',
-    isEditable: false
+    isEditable: false,
+    isCompleted:false
   });
    
   }
@@ -70,11 +72,18 @@ function App() {
   const deleteAllTask =()=>{
       setTaskList([]);
   }
+
+  const toggleCompleted = (id)=>{
+      const completedTask = taskList.map(item=>
+        item.id === id ? {...item, isCompleted: !item.isCompleted} : item
+      )
+      setTaskList(completedTask);
+  }
   return (
     <div className={`App ${theme}`}>
       <Header handleThemeChange={handleThemeChange} theme={theme} />
       <AddTask handleChange={handleChange} task={task} addTask={addTask} />
-      <ShowTask taskList={taskList} deleteTask={deleteTask} editTask={editTask} deleteAllTask={deleteAllTask}/>
+      <ShowTask taskList={taskList} deleteTask={deleteTask} editTask={editTask} deleteAllTask={deleteAllTask} toggleCompleted={toggleCompleted}/>
     </div>
   );
 }
