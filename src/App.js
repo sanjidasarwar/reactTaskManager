@@ -4,7 +4,6 @@ import Header from './components/Header';
 import AddTask from './components/AddTask';
 import ShowTask from './components/ShowTask';
 import shortid from 'shortid';
-import { isEditable } from '@testing-library/user-event/dist/utils';
 
 function App() {
   const [theme, setTheme] = useState('light')
@@ -33,6 +32,10 @@ function App() {
 
   const addTask=(e)=>{
     e.preventDefault()
+    if (!task.name.trim()) {
+      alert('Enter a task')
+      return;
+    }
    if(task.isEditable){
       const updatedTask=taskList.map(item=>
         item.id===task.id ? {...item, name:task.name, time:task.time} : item
