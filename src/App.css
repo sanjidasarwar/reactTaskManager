@@ -88,7 +88,6 @@
   
   .showTask div.head{
     padding: 10px 0px 20px 0px;
-    border-bottom: 1px solid #dfdfdf;
     display: flex;
     align-items: center;
   }
