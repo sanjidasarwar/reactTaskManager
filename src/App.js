@@ -67,11 +67,14 @@ function App() {
       const newTaskList=taskList.filter(task => task.id !==id)
       setTaskList(newTaskList);
   }
+  const deleteAllTask =()=>{
+      setTaskList([]);
+  }
   return (
     <div className={`App ${theme}`}>
       <Header handleThemeChange={handleThemeChange} theme={theme} />
       <AddTask handleChange={handleChange} task={task} addTask={addTask} />
-      <ShowTask taskList={taskList} deleteTask={deleteTask} editTask={editTask} />
+      <ShowTask taskList={taskList} deleteTask={deleteTask} editTask={editTask} deleteAllTask={deleteAllTask}/>
     </div>
   );
 }

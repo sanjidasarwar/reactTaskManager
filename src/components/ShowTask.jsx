@@ -1,4 +1,4 @@
-function ShowTask({taskList, deleteTask, editTask}) {
+function ShowTask({taskList, deleteTask, editTask, deleteAllTask}) {
     return ( 
         <div className="container">
         <section className='showTask'>
@@ -7,7 +7,7 @@ function ShowTask({taskList, deleteTask, editTask}) {
                     <span className="title">Todo</span>
                     <span className="count bg-success text-white">{taskList.length}</span>
                 </span>
-                <span className="clearAll btn btn-danger">Clear All</span>
+                <span className="clearAll btn btn-danger" onClick={deleteAllTask}>Clear All</span>
             </p>
             <div className="row g-3">
                 {taskList.map(task=>(
