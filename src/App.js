@@ -4,10 +4,16 @@ import Header from './components/Header';
 import AddTask from './components/AddTask';
 import ShowTask from './components/ShowTask';
 import shortid from 'shortid';
+import { isEditable } from '@testing-library/user-event/dist/utils';
 
 function App() {
   const [theme, setTheme] = useState('light')
-  const [task, setTask] =useState('')
+  const [task, setTask] =useState({
+    id:'',
+    name:'',
+    time:'',
+    isEditable: false,
+  })
   const [taskList, setTaskList] = useState([])
 
   const handleThemeChange=(themeName)=>{
@@ -15,31 +21,49 @@ function App() {
   }
 
   const handleChange= (e)=>{
-    setTask(e.target.value)
+    const currentdate = new Date()
+    const datetime= currentdate.toLocaleString()
+    setTask((prevTask=>({
+      ...prevTask,
+      id:prevTask.isEditable ? prevTask.id : shortid.generate(),
+      name:e.target.value,
+      time:datetime
+    })))
   }
 
   const addTask=(e)=>{
     e.preventDefault()
-    const currentdate = new Date()
-    const datetime= currentdate.toLocaleString()
-
+   if(task.isEditable){
+      const updatedTask=taskList.map(item=>
+        item.id===task.id ? {...item, name:task.name, time:task.time} : item
+    )
+      setTaskList(updatedTask);
+   }else{
     setTaskList([
-      {
-        id:shortid.generate(),
-        name:task,
-        time:datetime
-      },
+      task,
       ...taskList
     ])
+   }
+   setTask({
+    id: '',
+    name: '',
+    time: '',
+    isEditable: false
+  });
+   
   }
-  const editTask=(id)=>{
 
+  const editTask=(id)=>{
+    const editableTask=taskList.find(task => task.id===id)
+    setTask({
+      ...editableTask,
+      isEditable:true
+    });
   }
   const deleteTask =(id)=>{
       const newTaskList=taskList.filter(task => task.id !==id)
       setTaskList(newTaskList);
   }
-
   return (
     <div className={`App ${theme}`}>
       <Header handleThemeChange={handleThemeChange} theme={theme} />
