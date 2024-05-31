@@ -38,8 +38,7 @@ function ShowTask({
             </span>
           </div>
           <div>
-            <select className="form-select" onChange={handleFilter}>
-              <option value="default">Filter</option>
+            <select className="form-select" value={filter} onChange={handleFilter}>
               {filterName.map((name) => (
                     <option key={name} value={name} >{name}</option>
                 ))}
