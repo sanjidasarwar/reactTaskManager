@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import AddTask from './components/AddTask';
@@ -6,7 +6,7 @@ import ShowTask from './components/ShowTask';
 import shortid from 'shortid';
 
 function App() {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
   const [task, setTask] =useState({
     id:'',
     name:'',
@@ -14,7 +14,7 @@ function App() {
     isEditable: false,
     isCompleted: false
   })
-  const [taskList, setTaskList] = useState([])
+  const [taskList, setTaskList] = useState(JSON.parse(localStorage.getItem('tasklist')) || [])
 
   const handleThemeChange=(themeName)=>{
     setTheme(themeName)
@@ -79,6 +79,14 @@ function App() {
       )
       setTaskList(completedTask);
   }
+  useEffect(()=>{
+    localStorage.setItem('taskList', JSON.stringify(taskList))
+  }, [taskList])
+
+  useEffect(()=>{
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
   return (
     <div className={`App ${theme}`}>
       <Header handleThemeChange={handleThemeChange} theme={theme} />
